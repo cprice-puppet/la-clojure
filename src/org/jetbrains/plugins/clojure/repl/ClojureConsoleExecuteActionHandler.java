@@ -7,6 +7,7 @@ import com.intellij.lang.FileASTNode;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.Result;
 import com.intellij.openapi.command.WriteCommandAction;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -26,6 +27,8 @@ import java.io.OutputStream;
  */
 public class ClojureConsoleExecuteActionHandler {
 
+  private static final Logger LOG = Logger.getInstance(ClojureConsoleExecuteActionHandler.class.getName());
+
   private final ProcessHandler myProcessHandler;
   private final Project myProject;
   private final IndentHelper myIndentHelper;
@@ -43,6 +46,7 @@ public class ClojureConsoleExecuteActionHandler {
 
   public void processLine(String line) {
     //final Charset charset = myProcessHandler.getCharset();
+    LOG.info("In processLine: '" + line + "'");
     final OutputStream outputStream = myProcessHandler.getProcessInput();
     try {
       //byte[] bytes = (line + "\n").getBytes(charset.name());

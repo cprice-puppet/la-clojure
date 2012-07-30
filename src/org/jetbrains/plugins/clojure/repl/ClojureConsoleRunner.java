@@ -110,7 +110,9 @@ public class ClojureConsoleRunner {
 
   public void initAndRun(final String... statements2execute) throws ExecutionException {
     // Create Server process
-    final Process process = createProcess(myProvider);
+//    final Process process = createProcess(myProvider);
+    final Process process = new ClojureNReplProcess();
+
     // !!! do not change order!!!
     myConsoleView = createConsoleView();
     myProcessHandler = new ClojureConsoleProcessHandler(process, myProvider.getCommandLineString(), getLanguageConsole());
